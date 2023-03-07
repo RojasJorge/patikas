@@ -1,5 +1,5 @@
 import { Table, Tag } from "antd";
-import History from "./timeline";
+// import History from "./timeline";
 
 const columns = [
   {
@@ -196,9 +196,9 @@ const Cargo = () => {
         columns={columns}
         dataSource={rows}
         rowKey={(record) => record.id}
-        expandable={{
-          expandedRowRender: (record) => <History />,
-        }}
+        // expandable={{
+        //   expandedRowRender: (record) => <History />,
+        // }}
         // rowClassName={(record, index) => tableRow(record, index)}
         size="large"
         style={{ width: "100%" }}

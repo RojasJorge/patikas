@@ -2,6 +2,7 @@ import { StoreProvider } from "easy-peasy";
 import store from "../store";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-utilities.min.css";
+import "antd/dist/reset.css";
 import "../styles/globals.css";
 import "animate.css";
 import "../styles/animations.css";
