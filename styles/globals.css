@@ -2,25 +2,189 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  /* background-color: #000; */
+  color: rgb(48,42,28);
+  /* overflow: hidden; */
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  background-color: #fff;
+  /* background-image: url("/bg.svg");
+  background-position: right 100%;
+  background-repeat: no-repeat; */
+  /* background-position: 105% 0; */
 }
 
-* {
-  box-sizing: border-box;
+/**
+ * Layout
+ */
+html, body, #__next {
+  height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
+.sidebar {
+  position: relative;
+}
+
+.sidebar::after {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: #d9d9d9;
+  content: "";
+}
+
+:where(.css-dev-only-do-not-override-63ohfc).ant-card .ant-card-head {
+  display: none;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100%;
+}
+
+#content-wrap {
+  padding-bottom: 250px;    /* Footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background-color: #2E2925; /* Footer height */
+}
+
+h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 4.8rem;
+  color: #2E2925;
+  /* color: #F07C65; */
+}
+
+.font-600 {
+  font-weight: 600;
+}
+
+/**
+ * Headers
+ */
+.header--primary {
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+}
+
+.header--primary .text {
+  position: relative;
+  z-index: 2;
+}
+
+.header--primary.section::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #E8C375;
+  /* background-color: #FFFFE3; */
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  z-index: 1;
+}
+
+img {
+  max-width: 100%;
+}
+
+.w-6 {
+  width: 1rem;
+}
+
+.w-6 {
+  height: 1rem;
+}
+
+.image-container {
+  height: 150px;
+  border-bottom: 5px solid #f5f5f5;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-color: #f5f5f5;
+}
+
+.mainmenu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mainmenu svg {
+  
+}
+
+/** Categories */
+.categories {
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+}
+
+.tag {
+  font-size: 12px;
+  color: rgb(109,96,79);
+  background-color: #fff;
+  padding: 3px 6px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.tag .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/** Products */
+.product .wrapper {
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  border: 1px solid rgb(190,183,155);
+  /* min-height: 250px; */
+}
+
+.product-title {
+  min-height: 60px;
+}
+
+.product .button {
+  border: 0;
+  background: #fff;
+  color: rgb(48,42,28);
+  border: 1px solid rgb(48,42,28);
+  display: block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: all .2s ease-in-out;
+}
+
+.product .button:hover {
+  background-color: rgb(190,183,155);
+  color: rgb(48,42,28);
+}
+
+
+
+@media (max-width: 768px) {
+  .image-container {
+    height: auto;
   }
 }
