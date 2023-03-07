@@ -1,0 +1,19 @@
+.success {
+  background-color: rgb(241, 255, 241);
+}
+
+.onhold {
+  background-color: rgb(255, 255, 255);
+}
+
+.enroute {
+  background-color: rgb(216, 241, 255);
+}
+
+.problem {
+  background-color: rgb(255, 221, 221);
+}
+
+.onhold {
+  background-color: rgb(255, 255, 255);
+}

@@ -1,13 +1,14 @@
 import Head from "next/head";
 import MainHeader from "../components/structure/MainHeader";
-import Categories from "../components/categories";
+// import Categories from "../components/categories";
 import { ConfigProvider } from "antd";
 import MainFooter from "../components/structure/MainFooter";
+import { BackgroundSite1 } from "../components/misc/background";
 
 const CargoView = ({ children, title }) => {
   return (
     <>
-      {/* <BackgroundSite1 /> */}
+      <BackgroundSite1 />
       <ConfigProvider
         theme={{
           token: {
@@ -37,16 +38,16 @@ const CargoView = ({ children, title }) => {
         <div id="page-container">
           <div id="content-wrap">
             <div className="container">
-              <MainHeader title={title} headerTitle="Carga" />
+              <MainHeader
+                title={title}
+                headerTitle="Carga"
+                showTopMenu={false}
+                titleClass={`title--white title--alegreya`}
+              />
             </div>
             <div className="container">
               <div className="row">
-                <div className="col-2 sidebar">
-                  <Categories />
-                </div>
-                <div className="col">
-                  <div className="container" style={{minHeight: 300}}>{children}</div>
-                </div>
+                <div className="col">{children}</div>
               </div>
             </div>
           </div>

@@ -7,10 +7,10 @@ export const BackgroundSite1 = () => {
     >
       <g>
         <linearGradient id="svg-gradient" x1="0" x2="1" y1="0" y2="0">
-          <stop stop-color="hsl(39, 74.8%, 54.9%)" offset="1"></stop>
-          <stop stop-color="hsl(41, 71.4%, 68.4%)" offset="2"></stop>
-          {/* <stop stop-color="hsl(217, 88%, 33.7%)" offset="0"></stop>
-          <stop stop-color="hsl(217, 88%, 75.1%)" offset="1"></stop> */}
+          {/* <stop stop-color="hsl(39, 74.8%, 54.9%)" offset="1"></stop>
+          <stop stop-color="hsl(41, 71.4%, 68.4%)" offset="2"></stop> */}
+          <stop stop-color="hsl(217, 88%, 33.7%)" offset="0"></stop>
+          <stop stop-color="hsl(217, 88%, 75.1%)" offset="1"></stop>
         </linearGradient>
         <path d="" fill="url(#svg-gradient)" opacity="0.4">
           <animate

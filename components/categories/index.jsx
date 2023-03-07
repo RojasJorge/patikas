@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { groq } from "next-sanity";
 import { useRouter } from "next/router";
 import dbClient from "../../database";
@@ -15,7 +15,7 @@ const Categories = () => {
 
   const categories = useStoreState((state) => state.categories);
 
-  const getCategories = async () => {
+  const getCategories = useCallback(async () => {
     let Query = groq`
     *[_type == "category"]{
       _id, 
@@ -25,7 +25,7 @@ const Categories = () => {
   `;
 
     updateStoredCategories.updateList(await dbClient.fetch(Query));
-  };
+  }, [updateStoredCategories]);
 
   const queryBuilder = (e, cat) => {
     if (e.target.checked) {
@@ -64,11 +64,11 @@ const Categories = () => {
         { shallow: true }
       );
     }
-  }, [categories.search]);
+  }, [categories.search, push, query]);
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [getCategories]);
 
   return (
     <>

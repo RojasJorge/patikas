@@ -3,7 +3,8 @@ import dbClient, { get_products } from "../../database";
 import { useStoreState } from "easy-peasy";
 import { Pagination, Skeleton, Button, Input, Card, Tag, Spin } from "antd";
 import { PlusOutlined, TagOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 // import AlertsAndNews from "../alerts";
 const AlertsAndNews = React.lazy(() => import("../alerts"));
 
@@ -16,7 +17,7 @@ const Products = () => {
   const products = useStoreState((state) => state.products);
   const totalProducts = useStoreState((state) => state.products.total);
   const [pager, setPager] = useState({ offset: 0, size: 10, current: 1 });
-  const [loading, setLoading] = useState({status: false, message: ""});
+  const [loading, setLoading] = useState({ status: false, message: "" });
 
   const onPagerChange = (page, pageSize) => {
     const start = page === 1 ? page - 1 : page * pageSize - pageSize;
@@ -25,14 +26,14 @@ const Products = () => {
     setPager({ offset: start, size: end, current: page });
   };
 
-  const filterProducts = async (id) => {
-    setLoading({status: true});
+  const filterProducts = useCallback(async () => {
+    setLoading({ status: true });
     await get_products(pager.offset, pager.size, categories.search);
 
     setTimeout(() => {
-      setLoading({status: false, message: "No hay productos para mostrar."});
+      setLoading({ status: false, message: "No hay productos para mostrar." });
     }, 500);
-  };
+  }, [pager.offset, pager.size, categories.search]);
 
   const urlFor = (source) => {
     return builder.image(source);
@@ -40,10 +41,10 @@ const Products = () => {
 
   useEffect(() => {
     filterProducts();
-  }, [pager, categories.search]);
+  }, [filterProducts, pager.offset, pager.size, categories.search]);
 
-  const convertToArray = () =>
-    Array.from({ length: totalProducts }, (_value, index) => index);
+  // const convertToArray = () =>
+  //   Array.from({ length: totalProducts }, (_value, index) => index);
 
   const onSearch = (e) => {
     console.log("onSearch -->>", e);
@@ -101,33 +102,33 @@ const Products = () => {
         //   ))}
         // </div>
       )}
-      {(products?.list.length > 0 && loading.status === false) && (
+      {products?.list.length > 0 && loading.status === false && (
         <section
           className={`row products align-items-start justify-content-start`}
         >
-          {products.list.map((product) => (
-            <article className={`col col-md-4 product mb-5`} key={product._id}>
+          {products.list.map((product, key) => (
+            <article className={`col col-md-4 product mb-5`} key={key}>
               <Card
                 style={{ width: "100%" }}
                 hoverable
                 bordered
-                cover={
-                  <img
-                    width="300"
-                    height="150"
-                    src={
-                      product?.image
-                        ? urlFor(product?.image?.asset?._ref)?.url()
-                        : "https://via.placeholder.com/300x150?text=Sin+imagen+para+mostrar"
-                    }
-                    alt=""
-                  />
-                }
+                // cover={
+                //   <Image
+                //     width="300"
+                //     height="150"
+                //     src={
+                //       product?.image
+                //         ? urlFor(product?.image?.asset?._ref)?.url()
+                //         : "https://via.placeholder.com/300x150?text=Sin+imagen+para+mostrar"
+                //     }
+                //     alt=""
+                //   />
+                // }
                 actions={[
-                  <h4 className="p-0 m-0 mt-1">
+                  <h4 className="p-0 m-0 mt-1" key={1}>
                     Q{product?.price.toFixed(2)}
                   </h4>,
-                  <Button icon={<PlusOutlined />} type="primary" ghost>
+                  <Button icon={<PlusOutlined />} type="primary" key={2} ghost>
                     Agregar
                   </Button>,
                 ]}
@@ -141,20 +142,20 @@ const Products = () => {
                 />
 
                 {product?.category && product.category.length > 0
-                  ? product?.category.map((item, key) => {
-                      return (
-                        <Tag key={key} className="mt-3" icon={<TagOutlined />}>
-                          {item.title}
-                        </Tag>
-                      );
-                    })
+                  ? product?.category.map((item, key) => (
+                      <Tag key={key} className="mt-3" icon={<TagOutlined />}>
+                        {item.title}
+                      </Tag>
+                    ))
                   : null}
               </Card>
             </article>
           ))}
         </section>
       )}
-      {(!products.list.length > 0 && loading === false) && <p>{loading.message}</p>}
+      {!products.list.length > 0 && loading === false && (
+        <p>{loading.message}</p>
+      )}
       <div className="mb-4 d-flex justify-content-end">
         <Pagination
           defaultCurrent={1}

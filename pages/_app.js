@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import "animate.css";
 import "../styles/animations.css";
 import "../styles/menu.css";
+import "../styles/tables.css";
 
 const MyApp = ({ Component, pageProps }) => (
   <StoreProvider store={store}>

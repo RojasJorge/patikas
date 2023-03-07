@@ -1,15 +1,17 @@
 import Menu from "./Menu";
 
-const MainHeader = ({ headerTitle }) => {
+const MainHeader = ({ headerTitle, showTopMenu, titleClass }) => {
   return (
-    <>
-      <header>
-        <Menu />
-        <h1 className={`header--primary mb-5 mt-5 section`}>
-          <span className="text display-1">{headerTitle}</span>
-        </h1>
-      </header>
-    </>
+    <div className="row">
+      <div className="col">
+        <header>
+          {showTopMenu && <Menu />}
+          <h1 className={`${titleClass} header--primary mb-5 mt-5 section`}>
+            <span className="text display-1">{headerTitle}</span>
+          </h1>
+        </header>
+      </div>
+    </div>
   );
 };
 
