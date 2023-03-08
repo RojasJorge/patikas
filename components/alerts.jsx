@@ -14,6 +14,9 @@ const AlertsAndNews = () => {
   return (
     <>
       <div className="row">
+        <div className="col-12">
+          <pre>{JSON.stringify(notifications, false, 2)}</pre>
+        </div>
         {notifications.length > 0
           ? notifications.map((item, key) => {
               if (item.status) {

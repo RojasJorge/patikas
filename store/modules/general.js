@@ -12,7 +12,12 @@ export default {
     state.showCategoryForm = !state.showCategoryForm;
   }),
   setNotifications: action((state, payload) => {
-    let exist = filter(state.notifications, (o) => o._id != payload._id);
+    payload = {...payload, _id: payload?._id.replace("drafts.", "")};
+    let exist = filter(state.notifications, (o) => {
+      // console.log("payload -->>", payload)
+      
+      return o._id != payload._id;
+    });
 
     exist.push(payload);
 

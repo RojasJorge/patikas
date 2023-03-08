@@ -6,7 +6,7 @@ const dbClient = createClient({
   dataset: process.env.NEXT_PUBLIC_DATABASE_DATASET,
   apiVersion: process.env.NEXT_PUBLIC_DATABASE_API_VERSION,
   useCdn: false,
-  token: process.env.NEXT_PUBLIC_DATABASE_TOKEN
+  token: process.env.NEXT_PUBLIC_DATABASE_TOKEN,
 });
 
 export const get_by_pk = async (pk) => {
@@ -60,7 +60,7 @@ export const alert_and_news = async () => {
   return dbClient.listen(Query, {}).subscribe((update) => {
     const items = update.result;
 
-    store.dispatch.general.setNotifications(items);
+    if (items !== undefined && update.transition == "update") store.dispatch.general.setNotifications(items);
 
     return;
   });
