@@ -21,7 +21,7 @@ const AlertsAndNews = () => {
                   <div className="col-12" key={key}>
                     <Alert
                       message={item.title}
-                      description={`El estado es: ${isBoolean(item.status)} ${
+                      description={`${
                         item.description
                       }`}
                       type={item.type}
